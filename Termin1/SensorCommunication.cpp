@@ -18,7 +18,6 @@ Motion_t CSensorCommunication::getMotion(CSensorConfiguration conf)
 
 int CSensorCommunication::readMotion(CSensorConfiguration conf, char* buffer)
 {
-
     buffer[0] = char(0x0d);
     buffer[1] = char(0x01);
     buffer[2] = char(0x6c);

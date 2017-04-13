@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1492079749 source:/home/ldapusers/istpaolin/SeS/Termin1/main.cpp
+	<iostream>
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+
+1492075008 /home/ldapusers/istpaolin/SeS/Termin1/SensorConfiguration.h
+	<string>
+
+1492075008 source:/home/ldapusers/istpaolin/SeS/Termin1/SensorConfiguration.cpp
+	"SensorConfiguration.h"
+	<string>
+
+1492077732 /home/ldapusers/istpaolin/SeS/Termin1/SensorCommunication.h
+	"Motion.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<iomanip>
+
+1491362918 /home/ldapusers/istpaolin/SeS/Termin1/Motion.h
+
+1492079359 source:/home/ldapusers/istpaolin/SeS/Termin1/SensorCommunication.cpp
+	"SensorCommunication.h"
+
+1492079794 source:/home/ldapusers/istpaolin/SeS/Termin1/SensorTag.cpp
+	"SensorTag.h"
+
+1491585636 /home/ldapusers/istpaolin/SeS/Termin1/SensorTag.h
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+

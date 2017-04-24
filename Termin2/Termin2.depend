@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1493024727 source:/home/pi/development/SeS/Termin2/SensorCommunication.cpp
+	"SensorCommunication.h"
+
+1493024729 /home/pi/development/SeS/Termin2/SensorCommunication.h
+	"Motion.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<iomanip>
+
+1493023433 /home/pi/development/SeS/Termin2/Motion.h
+
+1493023433 /home/pi/development/SeS/Termin2/SensorConfiguration.h
+	<string>
+
+1493023433 source:/home/pi/development/SeS/Termin2/SensorConfiguration.cpp
+	"SensorConfiguration.h"
+	<string>
+
+1493025016 source:/home/pi/development/SeS/Termin2/SensorTag.cpp
+	"SensorTag.h"
+
+1493024962 /home/pi/development/SeS/Termin2/SensorTag.h
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+
+1493029461 source:/home/pi/development/SeS/Termin2/TwoThreadExample.cpp
+	<pthread.h>
+	<unistd.h>
+	<iostream>
+	<sys/time.h>
+	"SensorTag.h"
+	"Motion.h"
+

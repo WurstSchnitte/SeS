@@ -1,0 +1,46 @@
+start count x=0, y=0
+(x=1)Gyro -> X: 0 Y: 0 Z: 0
+Acc -> X: 0 Y: 0 Z: 0
+x: 1022
+(y=1)Gyro -> X: 2.05344 Y: -6.99237 Z: -6.16031
+(x=Acc -> X: 0 Y: 0 Z: 0
+2)y: 1478
+Gyro -> X: 0 Y: 0 Z: 0
+Acc -> X: 0 Y: 0 Z: 0
+x: 2325
+(y=2)Gyro -> X: 2.05344 Y: -6.99237 Z: -6.16031
+Acc -> X: -0.0319824 Y: 0.00811768 Z: 0.247192
+y: 706
+(x=3)Gyro -> X: 0 Y: 0 Z: 0
+Acc -> X: 0 Y: 0 Z: 0
+x: 745
+(y=3)Gyro -> X: 2.05344 Y: -6.99237 Z: -6.16031
+Acc -> X: -0.0319824 Y: 0.00811768 Z: 0.247192
+y: 772
+(x=4)Gyro -> X: 0 Y: 0 Z: 0
+Acc -> X: 0 Y: 0 Z: 0
+x: 757
+(y=4)Gyro -> X: 2.05344 Y: -6.99237 Z: -6.16031
+Acc -> X: -0.0319824 Y: 0.00811768 Z: 0.247192
+y: 774
+(x=5)Gyro -> X: 0 Y: 0 Z: 0
+Acc -> X: 0 Y: 0 Z: 0
+x: 761
+
+reached end of incrementing y
+(x=6)Gyro -> X: 0 Y: 0 Z: 0
+Acc -> X: 0 Y: 0 Z: 0
+x: 396
+(x=7)Gyro -> X: 0 Y: 0 Z: 0
+Acc -> X: 0 Y: 0 Z: 0
+x: 375
+(x=8)Gyro -> X: 0 Y: 0 Z: 0
+Acc -> X: 0 Y: 0 Z: 0
+x: 376
+(x=9)Gyro -> X: 0 Y: 0 Z: 0
+Acc -> X: 0 Y: 0 Z: 0
+x: 352
+
+reached end of incrementing x
+
+end count x=10, y=5

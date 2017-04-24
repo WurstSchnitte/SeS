@@ -32,3 +32,28 @@
 	"SensorTag.h"
 	"Motion.h"
 
+1493024727 source:/home/pi/development/SeS/Termin2-2/SensorCommunication.cpp
+	"SensorCommunication.h"
+
+1493024729 /home/pi/development/SeS/Termin2-2/SensorCommunication.h
+	"Motion.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<iomanip>
+
+1493023433 /home/pi/development/SeS/Termin2-2/Motion.h
+
+1493023433 /home/pi/development/SeS/Termin2-2/SensorConfiguration.h
+	<string>
+
+1493023433 source:/home/pi/development/SeS/Termin2-2/SensorConfiguration.cpp
+	"SensorConfiguration.h"
+	<string>
+
+1493025016 source:/home/pi/development/SeS/Termin2-2/SensorTag.cpp
+	"SensorTag.h"
+
+1493024962 /home/pi/development/SeS/Termin2-2/SensorTag.h
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+

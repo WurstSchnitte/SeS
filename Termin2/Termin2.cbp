@@ -12,15 +12,26 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="pthread" />
+				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="Motion.h" />
+		<Unit filename="SensorCommunication.cpp" />
+		<Unit filename="SensorCommunication.h" />
+		<Unit filename="SensorConfiguration.cpp" />
+		<Unit filename="SensorConfiguration.h" />
+		<Unit filename="SensorTag.cpp" />
+		<Unit filename="SensorTag.h" />
+		<Unit filename="TwoThreadExample.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />

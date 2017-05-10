@@ -57,3 +57,13 @@
 	"SensorConfiguration.h"
 	"SensorCommunication.h"
 
+1493288688 source:/home/pi/development/SeS/Termin2-2/TwoThreadExample.cpp
+	<pthread.h>
+	<sched.h>
+	<unistd.h>
+	<iostream>
+	<sys/time.h>
+	<sys/resource.h>
+	"SensorTag.h"
+	"Motion.h"
+

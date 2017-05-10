@@ -11,6 +11,10 @@ using namespace std;
 CSensorTag sensorTag{};
 Motion_t motion;
 
+long usecx = 500;
+long usecy = 500;
+
+const int sleepTime = 10000;
 
 void printMotion(){
     cout << "Gyro -> X: " << motion.gyro.x << " Y: " << motion.gyro.y << " Z: " << motion.gyro.z << endl;
@@ -31,10 +35,11 @@ void* main_thread2(void* parameterPtr) {
         cout << "(x=" << *xPtr << ")" << flush;
         printMotion();
         gettimeofday(&endtime,nullptr);
-        long usec = endtime.tv_usec - starttime.tv_usec;
-        cout << "x: " << usec << endl;
-        usleep(10000-usec);
-        //sleep(1); // wait a second
+        long sec = endtime.tv_sec - starttime.tv_sec;
+        usecx = sec * 1000000 + (endtime.tv_usec - starttime.tv_usec);
+        cout << "x: " << usecy << endl;
+        //usleep(sleepTime-usec);
+        usleep(usecy);
     }
     cout << endl << "reached end of incrementing x" << endl;
     // return NULL as function demands for a return value
@@ -56,19 +61,20 @@ int main() {
     }
     // sleep 2 seconds, then start incrementing y up to 5
     //sleep(2);
-    usleep(10000);
     timeval starttime;
     timeval endtime;
-    while ( ++y < 10 ) {
+    usleep(usecx);
+    while ( ++y < 5 ) {
         gettimeofday(&starttime,nullptr);
         motion = sensorTag.getMotion();
         cout << "(y=" << y << ")" << flush;
         printMotion();
         gettimeofday(&endtime,nullptr);
-        long usec = endtime.tv_usec - starttime.tv_usec;
-        cout << "y: " << usec << endl;
-        usleep(10000-usec);
-        //sleep(1); // wait a second
+        long sec = endtime.tv_sec - starttime.tv_sec;
+        usecy = sec * 1000000 + (endtime.tv_usec - starttime.tv_usec);
+        cout << "y: " << usecx << endl;
+        //usleep(sleepTime-usec);
+        usleep(usecx);
     }
     cout << endl << "reached end of incrementing y" << endl;
     /* wait for the second thread to finish */

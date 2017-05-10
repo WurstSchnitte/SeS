@@ -6,7 +6,8 @@
 #include <iostream>
 #include "CNamedSemaphore.h"
 #include <stdlib.h>
-
+#include <sys/types.h>
+#include <unistd.h>
 using namespace std;
 
 // valid states for our two processes, we use the impicit ordering of values
@@ -18,6 +19,7 @@ enum EProc_State {
 };
 
 #define NUMBER_OF_LOOPS     10
+
 
 const char sem_name1[] = "/semaphore";
 const char sem_name2[] = "/state";

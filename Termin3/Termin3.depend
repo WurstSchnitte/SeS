@@ -1,0 +1,57 @@
+# depslib dependency file v1.0
+1494423286 source:/home/ldapusers/istpaolin/SeS/Termin3/CNamedSemaphore.cpp
+	<iostream>
+	<errno.h>
+	<fcntl.h>
+	<stdlib.h>
+	"CNamedSemaphore.h"
+
+1487066498 /home/ldapusers/istpaolin/SeS/Termin3/CNamedSemaphore.h
+	<semaphore.h>
+
+1494421488 source:/home/ldapusers/istpaolin/SeS/Termin3/main.cpp
+	<iostream>
+
+1493118318 source:/home/ldapusers/istpaolin/SeS/Termin3/SensorCommunication.cpp
+	"SensorCommunication.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<string.h>
+	<stdint.h>
+	<stdio.h>
+	<stdlib.h>
+	<fcntl.h>
+	<sys/stat.h>
+	<unistd.h>
+
+1493280916 /home/ldapusers/istpaolin/SeS/Termin3/SensorCommunication.h
+	"Motion.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<iomanip>
+
+1493280916 /home/ldapusers/istpaolin/SeS/Termin3/Motion.h
+
+1493280916 /home/ldapusers/istpaolin/SeS/Termin3/SensorConfiguration.h
+	<string>
+
+1491667282 source:/home/ldapusers/istpaolin/SeS/Termin3/SensorConfiguration.cpp
+	"SensorConfiguration.h"
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+
+1491668006 source:/home/ldapusers/istpaolin/SeS/Termin3/SensorTag.cpp
+	"SensorTag.h"
+
+1493280916 /home/ldapusers/istpaolin/SeS/Termin3/SensorTag.h
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+
+1494423379 source:/home/ldapusers/istpaolin/SeS/Termin3/sync_proc.cpp
+	<iostream>
+	"CNamedSemaphore.h"
+	<stdlib.h>
+	<sys/types.h>
+	<unistd.h>
+

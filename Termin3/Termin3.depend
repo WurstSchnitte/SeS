@@ -1,12 +1,15 @@
 # depslib dependency file v1.0
-1494423286 source:/home/ldapusers/istpaolin/SeS/Termin3/CNamedSemaphore.cpp
+1494497264 source:/home/ldapusers/istpaolin/SeS/Termin3/CNamedSemaphore.cpp
 	<iostream>
 	<errno.h>
 	<fcntl.h>
+	<sys/stat.h>
+	<sys/types.h>
 	<stdlib.h>
+	<unistd.h>
 	"CNamedSemaphore.h"
 
-1487066498 /home/ldapusers/istpaolin/SeS/Termin3/CNamedSemaphore.h
+1494497263 /home/ldapusers/istpaolin/SeS/Termin3/CNamedSemaphore.h
 	<semaphore.h>
 
 1494421488 source:/home/ldapusers/istpaolin/SeS/Termin3/main.cpp
@@ -48,7 +51,7 @@
 	"SensorConfiguration.h"
 	"SensorCommunication.h"
 
-1494423379 source:/home/ldapusers/istpaolin/SeS/Termin3/sync_proc.cpp
+1494496549 source:/home/ldapusers/istpaolin/SeS/Termin3/sync_proc.cpp
 	<iostream>
 	"CNamedSemaphore.h"
 	<stdlib.h>

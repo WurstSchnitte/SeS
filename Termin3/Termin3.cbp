@@ -14,6 +14,9 @@
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="pthread" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/Termin3" prefix_auto="1" extension_auto="1" />
@@ -35,9 +38,11 @@
 		<Unit filename="CNamedSemaphore.cpp" />
 		<Unit filename="CNamedSemaphore.h" />
 		<Unit filename="SensorCommunication.cpp" />
+		<Unit filename="SensorCommunication.h" />
 		<Unit filename="SensorConfiguration.cpp" />
+		<Unit filename="SensorConfiguration.h" />
 		<Unit filename="SensorTag.cpp" />
-		<Unit filename="main.cpp" />
+		<Unit filename="SensorTag.h" />
 		<Unit filename="readSensor.sh" />
 		<Unit filename="sync_proc.cpp" />
 		<Unit filename="termin_3.pdf" />

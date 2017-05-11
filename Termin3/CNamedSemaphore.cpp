@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "CNamedSemaphore.h"
 
 using namespace std;
@@ -18,11 +19,13 @@ using namespace std;
 // @value - initial value of the semaphore
 CNamedSemaphore::CNamedSemaphore(const char *name, int value)
 {
-    semaphore = sem_open(name, O_CREAT);
+    semaphore = sem_open(name, O_CREAT, 0, value);
     if(semaphore == SEM_FAILED)
     {
         exitproc("open", errno);
     }
+    remember_my_name = name;
+    remember_my_creator = getpid();
 }
 
 // deconstruct the semaphore
@@ -33,6 +36,9 @@ CNamedSemaphore::~CNamedSemaphore()
     if(sem_close(semaphore) == -1)
     {
         exitproc("close", errno);
+    }
+    if(remember_my_creator == getpid()){
+        sem_unlink(remember_my_name);
     }
 }
 
@@ -52,6 +58,11 @@ void CNamedSemaphore::decrement(void)
     {
         exitproc("wait", errno);
     }
+    /*cout << "decrement id " << getpid() << " state " << state << endl;
+    int val = 0;
+    sem_getvalue(semaphore, &val);
+    cout << val << endl;
+    sleep(5);*/
 }
 
 
@@ -63,6 +74,7 @@ int CNamedSemaphore::value(void)
         exitproc("value", errno);
     }
     return sval;
+    //return state;
 }
 
 
@@ -70,7 +82,6 @@ int CNamedSemaphore::value(void)
 // process as a very simple error handling mechanism
 void CNamedSemaphore::exitproc(const char *text, int err)
 {
-
     cout << text;
     switch (err)
     {

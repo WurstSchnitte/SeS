@@ -43,7 +43,6 @@
 		<Unit filename="SensorConfiguration.h" />
 		<Unit filename="SensorTag.cpp" />
 		<Unit filename="SensorTag.h" />
-		<Unit filename="readSensor.sh" />
 		<Unit filename="sync_proc.cpp" />
 		<Unit filename="termin_3.pdf" />
 		<Extensions>

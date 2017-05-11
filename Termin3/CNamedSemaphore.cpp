@@ -19,6 +19,7 @@ using namespace std;
 // @value - initial value of the semaphore
 CNamedSemaphore::CNamedSemaphore(const char *name, int value)
 {
+    sem_unlink(name);
     semaphore = sem_open(name, O_CREAT, 0, value);
     if(semaphore == SEM_FAILED)
     {

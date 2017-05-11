@@ -58,3 +58,60 @@
 	<sys/types.h>
 	<unistd.h>
 
+1494498841 source:/home/pi/development/SeS/Termin3/CNamedSemaphore.cpp
+	<iostream>
+	<errno.h>
+	<fcntl.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<stdlib.h>
+	<unistd.h>
+	"CNamedSemaphore.h"
+
+1494419596 /home/pi/development/SeS/Termin3/CNamedSemaphore.h
+	<semaphore.h>
+
+1494419596 source:/home/pi/development/SeS/Termin3/SensorCommunication.cpp
+	"SensorCommunication.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<string.h>
+	<stdint.h>
+	<stdio.h>
+	<stdlib.h>
+	<fcntl.h>
+	<sys/stat.h>
+	<unistd.h>
+
+1494497707 /home/pi/development/SeS/Termin3/SensorCommunication.h
+	"Motion.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<iomanip>
+
+1494497707 /home/pi/development/SeS/Termin3/Motion.h
+
+1494497707 /home/pi/development/SeS/Termin3/SensorConfiguration.h
+	<string>
+
+1494419596 source:/home/pi/development/SeS/Termin3/SensorConfiguration.cpp
+	"SensorConfiguration.h"
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+
+1494419596 source:/home/pi/development/SeS/Termin3/SensorTag.cpp
+	"SensorTag.h"
+
+1494497707 /home/pi/development/SeS/Termin3/SensorTag.h
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+
+1494500566 source:/home/pi/development/SeS/Termin3/sync_proc.cpp
+	<iostream>
+	"CNamedSemaphore.h"
+	"SensorTag.h"
+	<stdlib.h>
+	<sys/types.h>
+	<unistd.h>
+

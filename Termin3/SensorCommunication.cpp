@@ -6,13 +6,15 @@
 #include <stdio.h>
 // system
 #include <stdlib.h>
-// fifo 
-#include <fcntl.h>   
+// fifo
+#include <fcntl.h>
 #include <sys/stat.h>
 // read
 #include <unistd.h>
 
 #define MAX_BUF 12
+
+#define NO_PI
 
 Motion_t CSensorCommunication::getMotion(CSensorConfiguration conf) {
 	char buffer[MAX_BUF];
@@ -26,7 +28,7 @@ Motion_t CSensorCommunication::getMotion(CSensorConfiguration conf) {
 Motion_t CSensorCommunication::convertMotion(char* rawData) {
 	Motion_t motion;
 	int16_t* rawData16 = (int16_t*) rawData;
-	
+
 	int16_t gx = rawData16[0];
 	int16_t gy = rawData16[1];
 	int16_t gz = rawData16[2];
@@ -34,7 +36,7 @@ Motion_t CSensorCommunication::convertMotion(char* rawData) {
 	int16_t ax = rawData16[3];
 	int16_t ay = rawData16[4];
 	int16_t az = rawData16[5];
-	
+
   	//-- calculate rotation, unit deg/s, range -250, +250
   	motion.gyro.x = (gx * 1.0) / (65536/ 500);
   	motion.gyro.y = (gy * 1.0) / (65536/ 500);
@@ -72,7 +74,7 @@ int CSensorCommunication::readMotion(CSensorConfiguration conf, char* buffer) {
 	buffer[8] = 0x85;
 	buffer[9] = 0x00;
 	buffer[10] = 0xd2;
-	buffer[11] = 0x0f; 
+	buffer[11] = 0x0f;
 #else
 	int fd;
     char* pipe = (char*) "/tmp/sensorTagPipe";

@@ -30,7 +30,8 @@ CNamedSemaphore state(sem_name2, STATE_ACTIVE_CHILD);
 CSensorTag stag;
 
 
-void printMotion(Motion_t motion){
+void printMotion(Motion_t motion)
+{
     cout << "Gyro -> X: " << motion.gyro.x << " Y: " << motion.gyro.y << " Z: " << motion.gyro.z << endl;
     cout << "Acc -> X: " << motion.acc.x << " Y: " << motion.acc.y << " Z: " << motion.acc.z << endl;
 }
@@ -48,7 +49,7 @@ void pingpong(bool parent)
                 semaphore.decrement();
                 if(state.value() == STATE_ACTIVE_PARENT)
                 {
-                    cout << "Parent" << endl;
+                    cout << endl << "Parent" << endl;
                     printMotion(stag.getMotion());
                     state.decrement();
                     semaphore.increment();
@@ -64,7 +65,7 @@ void pingpong(bool parent)
                 semaphore.decrement();
                 if(state.value() == STATE_ACTIVE_CHILD)
                 {
-                    cout << "Child" << endl;
+                    cout << endl <<"Child" << endl;
                     printMotion(stag.getMotion());
                     state.increment();
                     semaphore.increment();
@@ -74,7 +75,7 @@ void pingpong(bool parent)
             }
         }
     }
-    cout << "!!!!" << endl;
+    cout << endl <<endl;
     if(!parent)
     {
         semaphore.decrement();
@@ -86,6 +87,7 @@ void pingpong(bool parent)
             semaphore.increment();
             exit(1);
         }
+        semaphore.increment();
     }
     else
     {

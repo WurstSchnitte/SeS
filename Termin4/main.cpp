@@ -12,8 +12,8 @@
 using namespace std;
 
 #define SHM_NAME        "/estSHM"
-#define QUEUE_SIZE      1
-#define NUM_MESSAGES    10000
+#define QUEUE_SIZE      16
+#define NUM_MESSAGES    100
 
 struct PackedData {
 	Motion_t motion;
@@ -62,7 +62,9 @@ void printMotion(Motion_t motion)
 }
 
 void readMessage(CCommQueue* commQueue, CBinarySemaphore* sem){
-    sem->take();
+    if(commQueue->getNumOfMessages() < 1){
+        sem->take();
+    }
     CMessage msg;
     commQueue->getMessage(msg);
     timeval stop;
@@ -132,7 +134,7 @@ int main()
             cout << "WriteMessage: " << i << endl;
             writeMessage(commQueue);
         }
-
+        sem->give();
         munmap(start,getSizeForMMap());
         close_memory(descr);
 

@@ -68,7 +68,7 @@ void* readSensor(void* data_ptr) {
 	return NULL;
 }
 
-#define NO_PI;
+//#define NO_PI;
 
 int CSensorCommunication::readMotion(CSensorConfiguration conf, char* buffer) {
 #ifdef NO_PI

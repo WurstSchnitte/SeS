@@ -61,7 +61,7 @@ class IMessageHandler;
 
 struct MostMessage
 {
-
+    timeval time;
 	Int32 mType;					// siehe unten Enums   MOST size = 19 Byte, total 22
 	union {
 		unsigned char bytes[19];	/**< raw most data */

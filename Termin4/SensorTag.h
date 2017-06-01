@@ -11,6 +11,9 @@ class CSensorTag: public CSensorConfiguration, private CSensorCommunication {
             @return Return Motion_t with convertet values
         */
         Motion_t getMotion();
+        char* getMotionAsByte();
+
+        Motion_t convertMotion(char* rawData);
 };
 
 #endif /* __SENSOR_TAG_H__ */

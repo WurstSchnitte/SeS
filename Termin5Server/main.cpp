@@ -85,13 +85,16 @@ void readMessage(CCommQueue* commQueue, CBinarySemaphore* sem, int newsockfd)
     timeval sub;
     timeval start = msg.getStructMostMessage().time;
     timersub(&stop,&start,&sub);
-    cout << "Zeit: " << sub.tv_sec << "Sekunden "
-         << sub.tv_usec << "Mikrosekunden" << endl;
+    cout << "Zeit: " << sub.tv_sec << " Sekunden "
+         << sub.tv_usec << " Mikrosekunden" << endl;
 
     PackedData_t data;
     data.motion = cTag.convertMotion((char*)(msg.getStructMostMessage().data.bytes));
     data.time = stop.tv_sec;
     int n = write(newsockfd,&data,sizeof(PackedData_t));
+    if(n <= 0){
+        cout << "Fehler beim senden der Daten" << endl;
+    }
     //printMotion(cTag.convertMotion((char*)(msg.getStructMostMessage().data.bytes)));
 
 }
@@ -118,29 +121,33 @@ void child(int port, int descr)
     void* start = map_memory(descr);
     CBinarySemaphore* sem = (CBinarySemaphore*)start;
     CCommQueue* commQueue = (CCommQueue*)(start+sizeof(CBinarySemaphore));
-    int sockfd, newsockfd, portno;
+    int sockfd, newsockfd;
     socklen_t clilen;
-    char buffer[256];
     struct sockaddr_in serv_addr, cli_addr;
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0)
+    if (sockfd < 0){
+        cout << "Socket konnte nicht erzeugt werden" << endl;
         exit(0);
+    }
     bzero((char *) &serv_addr, sizeof(serv_addr));
-    portno = port;
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
-    serv_addr.sin_port = htons(portno);
+    serv_addr.sin_port = htons(port);
     if (bind(sockfd, (struct sockaddr *) &serv_addr,
-             sizeof(serv_addr)) < 0)
+             sizeof(serv_addr)) < 0){
+        cout << "Socket konnte nicht gebunden werden" << endl;
         exit(0);
+    }
     listen(sockfd,5);
     clilen = sizeof(cli_addr);
     newsockfd = accept(sockfd,
                        (struct sockaddr *) &cli_addr,
                        &clilen);
-    if (newsockfd < 0)
+    if (newsockfd < 0){
+        cout << "Verbindung konnte nicht angenommen werden" << endl;
         exit(0);
+    }
     cout << "Verbunden" <<endl;
 
     for(int i = 0; i < NUM_MESSAGES; ++i)
@@ -184,6 +191,10 @@ int main(int argc, char *argv[])
             return descr;
         }
         int a = ftruncate(descr, getSizeForMMap());
+        if(a < 0){
+            cout << "Shared Memory konnte nidcht allokiert werden" << endl;
+            exit(0);
+        }
         void* start = map_memory(descr);
         CBinarySemaphore* sem = (CBinarySemaphore*)start;
         CCommQueue* commQueue = (CCommQueue*)(start+sizeof(CBinarySemaphore));

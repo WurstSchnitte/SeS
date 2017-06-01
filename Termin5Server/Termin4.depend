@@ -239,3 +239,85 @@
 	"CCommQueue.h"
 	"SensorTag.h"
 
+1496330346 source:/home/pi/development/SeS/Termin5Server/CBinarySemaphore.cpp
+	"CBinarySemaphore.h"
+
+1496330346 /home/pi/development/SeS/Termin5Server/CBinarySemaphore.h
+	"Global.h"
+	"FWAssertion.h"
+	<sys/time.h>
+	<errno.h>
+	<pthread.h>
+
+1496330346 /home/pi/development/SeS/Termin5Server/Global.h
+	<stdio.h>
+	<stdio.h>
+
+1496330346 /home/pi/development/SeS/Termin5Server/FWAssertion.h
+	<assert.h>
+
+1496330346 source:/home/pi/development/SeS/Termin5Server/CCommQueue.cpp
+	"CCommQueue.h"
+	"FWAssertion.h"
+	<new>
+
+1496330346 /home/pi/development/SeS/Termin5Server/CCommQueue.h
+	"Global.h"
+	"CBinarySemaphore.h"
+	"CMessage.h"
+
+1496330346 /home/pi/development/SeS/Termin5Server/CMessage.h
+	"Global.h"
+	"IMessageHandler.h"
+	<string.h>
+
+1496330346 /home/pi/development/SeS/Termin5Server/IMessageHandler.h
+
+1496330346 source:/home/pi/development/SeS/Termin5Server/SensorCommunication.cpp
+	"SensorCommunication.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<string.h>
+	<stdint.h>
+	<stdio.h>
+	<stdlib.h>
+	<fcntl.h>
+	<sys/stat.h>
+	<unistd.h>
+
+1496330346 /home/pi/development/SeS/Termin5Server/SensorCommunication.h
+	"Motion.h"
+	"SensorConfiguration.h"
+
+1496330346 /home/pi/development/SeS/Termin5Server/Motion.h
+
+1496330346 /home/pi/development/SeS/Termin5Server/SensorConfiguration.h
+	<string>
+
+1496330346 source:/home/pi/development/SeS/Termin5Server/SensorConfiguration.cpp
+	"SensorConfiguration.h"
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+
+1496330346 source:/home/pi/development/SeS/Termin5Server/SensorTag.cpp
+	"SensorTag.h"
+
+1496330346 /home/pi/development/SeS/Termin5Server/SensorTag.h
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+
+1496332190 source:/home/pi/development/SeS/Termin5Server/main.cpp
+	<iostream>
+	<stdlib.h>
+	<unistd.h>
+	<sys/mman.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<sys/time.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<sys/types.h>
+	"CCommQueue.h"
+	"SensorTag.h"
+

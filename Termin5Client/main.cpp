@@ -86,8 +86,8 @@ void readMessage(CCommQueue* commQueue, CBinarySemaphore* sem)
     timeval sub;
     timeval start = msg.getStructMostMessage().time;
     timersub(&stop,&start,&sub);
-    cout << "Zeit: " << sub.tv_sec << "Sekunden "
-         << sub.tv_usec << "Mikrosekunden" << endl;
+    cout << "Zeit: " << sub.tv_sec << " Sekunden "
+         << sub.tv_usec << " Mikrosekunden" << endl;
     printMotion(cTag.convertMotion((char*)(msg.getStructMostMessage().data.bytes)));
 
 }
@@ -96,8 +96,9 @@ void writeMessage(CCommQueue* commQueue, int sockfd)
 {
     PackedData_t data;
     int n = read(sockfd,&data,sizeof(PackedData_t));
-    if (n < 0)
-        exit(0);
+    if (n < 0){
+        cout << "Nachricht konnte nicht gelesen werden" << endl;
+    }
 
     MostMessage mostMsg;
     mostMsg.mType = CMessage::Softical_Most_Type;
@@ -120,23 +121,17 @@ void parent(int port, string addressName, int descr)
     void* start = map_memory(descr);
     CBinarySemaphore* sem = (CBinarySemaphore*)start;
     CCommQueue* commQueue = (CCommQueue*)(start+sizeof(CBinarySemaphore));
-    int sockfd, portno, n;
+    int sockfd;
     struct sockaddr_in serv_addr;
     struct hostent *server;
-
-    char buffer[256];
-    /*if (argc < 3) {
-       fprintf(stderr,"usage %s hostname port\n", argv[0]);
-       exit(0);
-    }*/
-    portno = port;
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0)
+    if (sockfd < 0){
+        cout << "Socket konnte nicht erzeugt werden" << endl;
         exit(0);
+    }
     server = gethostbyname(addressName.c_str());
-    if (server == NULL)
-    {
-        fprintf(stderr,"ERROR, no such host\n");
+    if (server == NULL){
+        cout << "Hostname konnte nicht aufgelöst werden" << endl;
         exit(0);
     }
     bzero((char *) &serv_addr, sizeof(serv_addr));
@@ -144,9 +139,11 @@ void parent(int port, string addressName, int descr)
     bcopy((char *)server->h_addr,
           (char *)&serv_addr.sin_addr.s_addr,
           server->h_length);
-    serv_addr.sin_port = htons(portno);
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0)
+    serv_addr.sin_port = htons(port);
+    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0){
+        cout << "Verbindung konnte nicht hergestellt werden" << endl;
         exit(0);
+    }
     cout << "Verbunden" <<endl;
 
     for(int i = 0; i < NUM_MESSAGES; ++i)

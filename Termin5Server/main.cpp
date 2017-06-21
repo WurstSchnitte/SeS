@@ -5,6 +5,9 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/time.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <sys/types.h>
 
 #include "CCommQueue.h"
 #include "SensorTag.h"
@@ -15,9 +18,10 @@ using namespace std;
 #define QUEUE_SIZE      16
 #define NUM_MESSAGES    100
 
-struct PackedData {
-	Motion_t motion;
-	UInt64 time;
+struct PackedData
+{
+    Motion_t motion;
+    UInt64 time;
 };
 typedef struct PackedData PackedData_t;
 
@@ -26,29 +30,36 @@ CSensorTag cTag = CSensorTag();
 
 
 
-int open_memory(mode_t mode){
+int open_memory(mode_t mode)
+{
     return shm_open(SHM_NAME, O_CREAT | mode, NULL);
 }
 
-void close_memory(int filedescriptor){
+void close_memory(int filedescriptor)
+{
     close(filedescriptor);
-    if(getpid() == parentId){
-        if(shm_unlink(SHM_NAME) == 0){
+    if(getpid() == parentId)
+    {
+        if(shm_unlink(SHM_NAME) == 0)
+        {
             cout << "SHM Gelöscht!" << endl;
         };
     }
 }
 
-size_t getSizeForMMap(){
+size_t getSizeForMMap()
+{
     size_t out = sizeof(CBinarySemaphore);
     out += sizeof(CCommQueue);
     out += QUEUE_SIZE*sizeof(CMessage);
     return out;
 }
 
-void* map_memory(int descr){
+void* map_memory(int descr)
+{
     void* startMap = mmap(0, getSizeForMMap(), PROT_WRITE | PROT_READ ,MAP_SHARED, descr,0);
-    if(getpid() == parentId){
+    if(getpid() == parentId)
+    {
         new (startMap)CBinarySemaphore(true,true);
         new (startMap + sizeof(CBinarySemaphore))CCommQueue(QUEUE_SIZE,*(CBinarySemaphore*)startMap);
     }
@@ -61,8 +72,10 @@ void printMotion(Motion_t motion)
     cout << "Acc -> X: " << motion.acc.x << " Y: " << motion.acc.y << " Z: " << motion.acc.z << endl << endl;
 }
 
-void readMessage(CCommQueue* commQueue, CBinarySemaphore* sem){
-    if(commQueue->getNumOfMessages() < 1){
+void readMessage(CCommQueue* commQueue, CBinarySemaphore* sem, int newsockfd)
+{
+    if(commQueue->getNumOfMessages() < 1)
+    {
         sem->take();
     }
     CMessage msg;
@@ -73,16 +86,23 @@ void readMessage(CCommQueue* commQueue, CBinarySemaphore* sem){
     timeval start = msg.getStructMostMessage().time;
     timersub(&stop,&start,&sub);
     cout << "Zeit: " << sub.tv_sec << "Sekunden "
-            << sub.tv_usec << "Mikrosekunden" << endl;
-    printMotion(cTag.convertMotion((char*)(msg.getStructMostMessage().data.bytes)));
+         << sub.tv_usec << "Mikrosekunden" << endl;
+
+    PackedData_t data;
+    data.motion = cTag.convertMotion((char*)(msg.getStructMostMessage().data.bytes));
+    data.time = stop.tv_sec;
+    int n = write(newsockfd,&data,sizeof(PackedData_t));
+    //printMotion(cTag.convertMotion((char*)(msg.getStructMostMessage().data.bytes)));
 
 }
 
-void writeMessage(CCommQueue* commQueue){
+void writeMessage(CCommQueue* commQueue)
+{
     MostMessage mostMsg;
     mostMsg.mType = CMessage::Softical_Most_Type;
     char* motion = cTag.getMotionAsByte();
-    for(int i = 0; i < 12; ++i){
+    for(int i = 0; i < 12; ++i)
+    {
         mostMsg.data.bytes[i] = motion[i];
     }
     gettimeofday(&mostMsg.time, NULL);
@@ -90,8 +110,60 @@ void writeMessage(CCommQueue* commQueue){
     commQueue->add(msg);
 }
 
-int main()
+
+void child(int port, int descr)
 {
+
+    cout << "CHILD:" << endl;
+    void* start = map_memory(descr);
+    CBinarySemaphore* sem = (CBinarySemaphore*)start;
+    CCommQueue* commQueue = (CCommQueue*)(start+sizeof(CBinarySemaphore));
+    int sockfd, newsockfd, portno;
+    socklen_t clilen;
+    char buffer[256];
+    struct sockaddr_in serv_addr, cli_addr;
+
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd < 0)
+        exit(0);
+    bzero((char *) &serv_addr, sizeof(serv_addr));
+    portno = port;
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_addr.s_addr = INADDR_ANY;
+    serv_addr.sin_port = htons(portno);
+    if (bind(sockfd, (struct sockaddr *) &serv_addr,
+             sizeof(serv_addr)) < 0)
+        exit(0);
+    listen(sockfd,5);
+    clilen = sizeof(cli_addr);
+    newsockfd = accept(sockfd,
+                       (struct sockaddr *) &cli_addr,
+                       &clilen);
+    if (newsockfd < 0)
+        exit(0);
+    cout << "Verbunden" <<endl;
+
+    for(int i = 0; i < NUM_MESSAGES; ++i)
+    {
+        cout << "ReadMessage: " << i << endl;
+        readMessage(commQueue, sem, newsockfd);
+    }
+
+    close(newsockfd);
+    close(sockfd);
+    munmap(start,getSizeForMMap());
+    close_memory(descr);
+
+}
+
+
+int main(int argc, char *argv[])
+{
+    if (argc < 2)
+    {
+        fprintf(stderr,"ERROR, no port provided\n");
+        exit(1);
+    }
     shm_unlink(SHM_NAME);
 
     cout << "Creating a child process ..." << endl;
@@ -101,28 +173,14 @@ int main()
     pid_t pid = fork();
     if (0 == pid)
     {
-        cout << "CHILD:" << endl;
-        //descr = open_memory(O_RDWR);
-        if(descr < 0){
-            cout << "Child shm_open Fault" << endl;
-            cout << errno << endl;
-            return descr;
-        }
-        void* start = map_memory(descr);
-        CBinarySemaphore* sem = (CBinarySemaphore*)start;
-        CCommQueue* commQueue = (CCommQueue*)(start+sizeof(CBinarySemaphore));
-        for(int i = 0; i < NUM_MESSAGES; ++i){
-            cout << "ReadMessage: " << i << endl;
-            readMessage(commQueue, sem);
-        }
-        munmap(start,getSizeForMMap());
-        close_memory(descr);
+        child(atof(argv[1]), descr);
     }
     else if (pid > 0)
     {
         cout << "PARENT:" << endl;
         //descr = open_memory(O_RDWR);
-        if(descr < 0){
+        if(descr < 0)
+        {
             return descr;
         }
         int a = ftruncate(descr, getSizeForMMap());
@@ -130,7 +188,8 @@ int main()
         CBinarySemaphore* sem = (CBinarySemaphore*)start;
         CCommQueue* commQueue = (CCommQueue*)(start+sizeof(CBinarySemaphore));
 
-        for(int i = 0; i < NUM_MESSAGES; ++i){
+        for(int i = 0; i < NUM_MESSAGES; ++i)
+        {
             cout << "WriteMessage: " << i << endl;
             writeMessage(commQueue);
         }

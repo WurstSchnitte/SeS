@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Termin4" />
+		<Option title="Termin5Server" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -46,6 +46,7 @@
 		<Unit filename="Global.h" />
 		<Unit filename="IMessageHandler.h" />
 		<Unit filename="Motion.h" />
+		<Unit filename="PackedData.h" />
 		<Unit filename="SensorCommunication.cpp" />
 		<Unit filename="SensorCommunication.h" />
 		<Unit filename="SensorConfiguration.cpp" />

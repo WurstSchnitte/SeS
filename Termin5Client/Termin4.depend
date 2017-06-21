@@ -157,3 +157,87 @@
 1496324642 source:/home/pi/development/SeS/Termin4/SensorTag.cpp
 	"SensorTag.h"
 
+1498046608 source:/home/pi/development/gitStuff/SeS/Termin5Client/CBinarySemaphore.cpp
+	"CBinarySemaphore.h"
+
+1498046608 /home/pi/development/gitStuff/SeS/Termin5Client/CBinarySemaphore.h
+	"Global.h"
+	"FWAssertion.h"
+	<sys/time.h>
+	<errno.h>
+	<pthread.h>
+
+1498046608 /home/pi/development/gitStuff/SeS/Termin5Client/Global.h
+	<stdio.h>
+	<stdio.h>
+
+1498046608 /home/pi/development/gitStuff/SeS/Termin5Client/FWAssertion.h
+	<assert.h>
+
+1498046608 source:/home/pi/development/gitStuff/SeS/Termin5Client/CCommQueue.cpp
+	"CCommQueue.h"
+	"FWAssertion.h"
+	<new>
+
+1498046608 /home/pi/development/gitStuff/SeS/Termin5Client/CCommQueue.h
+	"Global.h"
+	"CBinarySemaphore.h"
+	"CMessage.h"
+
+1498049549 /home/pi/development/gitStuff/SeS/Termin5Client/CMessage.h
+	"Global.h"
+	"IMessageHandler.h"
+	"Motion.h"
+	<string.h>
+
+1498046608 /home/pi/development/gitStuff/SeS/Termin5Client/IMessageHandler.h
+
+1498048055 source:/home/pi/development/gitStuff/SeS/Termin5Client/main.cpp
+	<iostream>
+	<stdlib.h>
+	<unistd.h>
+	<sys/mman.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<sys/time.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<sys/types.h>
+	<netdb.h>
+	"CCommQueue.h"
+	"SensorTag.h"
+
+1498046608 /home/pi/development/gitStuff/SeS/Termin5Client/SensorTag.h
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+
+1498046608 /home/pi/development/gitStuff/SeS/Termin5Client/SensorConfiguration.h
+	<string>
+
+1498046608 /home/pi/development/gitStuff/SeS/Termin5Client/SensorCommunication.h
+	"Motion.h"
+	"SensorConfiguration.h"
+
+1498046608 /home/pi/development/gitStuff/SeS/Termin5Client/Motion.h
+
+1498046725 source:/home/pi/development/gitStuff/SeS/Termin5Client/SensorCommunication.cpp
+	"SensorCommunication.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<string.h>
+	<stdint.h>
+	<stdio.h>
+	<stdlib.h>
+	<fcntl.h>
+	<sys/stat.h>
+	<unistd.h>
+
+1498046608 source:/home/pi/development/gitStuff/SeS/Termin5Client/SensorConfiguration.cpp
+	"SensorConfiguration.h"
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+
+1498046608 source:/home/pi/development/gitStuff/SeS/Termin5Client/SensorTag.cpp
+	"SensorTag.h"
+

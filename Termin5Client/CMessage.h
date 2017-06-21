@@ -49,6 +49,7 @@
 
 #include "Global.h"
 #include "IMessageHandler.h"
+#include "Motion.h"
 
 #include <string.h>     // for memset
 
@@ -64,6 +65,7 @@ struct MostMessage
     timeval time;
 	Int32 mType;					// siehe unten Enums   MOST size = 19 Byte, total 22
 	union {
+	    Motion_t motion;
 		unsigned char bytes[19];	/**< raw most data */
 		struct {
 			UInt8 FBlockID;

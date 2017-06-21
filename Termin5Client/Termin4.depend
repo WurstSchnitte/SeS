@@ -1,0 +1,159 @@
+# depslib dependency file v1.0
+1487066498 source:/home/ldapusers/istpaolin/SeS/Termin4/CBinarySemaphore.cpp
+	"CBinarySemaphore.h"
+
+1487066498 /home/ldapusers/istpaolin/SeS/Termin4/CBinarySemaphore.h
+	"Global.h"
+	"FWAssertion.h"
+	<sys/time.h>
+	<errno.h>
+	<pthread.h>
+
+1487066498 /home/ldapusers/istpaolin/SeS/Termin4/Global.h
+	<stdio.h>
+	<stdio.h>
+
+1487066498 /home/ldapusers/istpaolin/SeS/Termin4/FWAssertion.h
+	<assert.h>
+
+1487066498 source:/home/ldapusers/istpaolin/SeS/Termin4/CCommQueue.cpp
+	"CCommQueue.h"
+	"FWAssertion.h"
+	<new>
+
+1487066498 /home/ldapusers/istpaolin/SeS/Termin4/CCommQueue.h
+	"Global.h"
+	"CBinarySemaphore.h"
+	"CMessage.h"
+
+1487066498 /home/ldapusers/istpaolin/SeS/Termin4/CMessage.h
+	"Global.h"
+	"IMessageHandler.h"
+	<string.h>
+
+1487066498 /home/ldapusers/istpaolin/SeS/Termin4/IMessageHandler.h
+
+1496306303 source:/home/ldapusers/istpaolin/SeS/Termin4/main.cpp
+	<iostream>
+	<stdlib.h>
+	<unistd.h>
+	<sys/mman.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<sys/time.h>
+	"CCommQueue.h"
+	"SensorTag.h"
+
+1491814598 /home/ldapusers/istpaolin/SeS/Termin4/SensorTag.h
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+
+1491814598 /home/ldapusers/istpaolin/SeS/Termin4/SensorConfiguration.h
+	<string>
+
+1491814598 /home/ldapusers/istpaolin/SeS/Termin4/SensorCommunication.h
+	"Motion.h"
+	"SensorConfiguration.h"
+
+1491814604 /home/ldapusers/istpaolin/SeS/Termin4/Motion.h
+
+1493118318 source:/home/ldapusers/istpaolin/SeS/Termin4/SensorCommunication.cpp
+	"SensorCommunication.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<string.h>
+	<stdint.h>
+	<stdio.h>
+	<stdlib.h>
+	<fcntl.h>
+	<sys/stat.h>
+	<unistd.h>
+
+1491815856 source:/home/ldapusers/istpaolin/SeS/Termin4/SensorConfiguration.cpp
+	"SensorConfiguration.h"
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+
+1491814598 source:/home/ldapusers/istpaolin/SeS/Termin4/SensorTag.cpp
+	"SensorTag.h"
+
+1487066498 source:/home/pi/development/SeS/Termin4/CBinarySemaphore.cpp
+	"CBinarySemaphore.h"
+
+1496313424 /home/pi/development/SeS/Termin4/CBinarySemaphore.h
+	"Global.h"
+	"FWAssertion.h"
+	<sys/time.h>
+	<errno.h>
+	<pthread.h>
+
+1487066498 /home/pi/development/SeS/Termin4/Global.h
+	<stdio.h>
+	<stdio.h>
+
+1487066498 /home/pi/development/SeS/Termin4/FWAssertion.h
+	<assert.h>
+
+1487066498 source:/home/pi/development/SeS/Termin4/CCommQueue.cpp
+	"CCommQueue.h"
+	"FWAssertion.h"
+	<new>
+
+1487066498 /home/pi/development/SeS/Termin4/CCommQueue.h
+	"Global.h"
+	"CBinarySemaphore.h"
+	"CMessage.h"
+
+1496326813 /home/pi/development/SeS/Termin4/CMessage.h
+	"Global.h"
+	"IMessageHandler.h"
+	<string.h>
+
+1487066498 /home/pi/development/SeS/Termin4/IMessageHandler.h
+
+1496330433 source:/home/pi/development/SeS/Termin4/main.cpp
+	<iostream>
+	<stdlib.h>
+	<unistd.h>
+	<sys/mman.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<sys/time.h>
+	"CCommQueue.h"
+	"SensorTag.h"
+
+1496324609 /home/pi/development/SeS/Termin4/SensorTag.h
+	"SensorConfiguration.h"
+	"SensorCommunication.h"
+
+1491814598 /home/pi/development/SeS/Termin4/SensorConfiguration.h
+	<string>
+
+1496323257 /home/pi/development/SeS/Termin4/SensorCommunication.h
+	"Motion.h"
+	"SensorConfiguration.h"
+
+1491814604 /home/pi/development/SeS/Termin4/Motion.h
+
+1496330493 source:/home/pi/development/SeS/Termin4/SensorCommunication.cpp
+	"SensorCommunication.h"
+	"SensorConfiguration.h"
+	<iostream>
+	<string.h>
+	<stdint.h>
+	<stdio.h>
+	<stdlib.h>
+	<fcntl.h>
+	<sys/stat.h>
+	<unistd.h>
+
+1491815856 source:/home/pi/development/SeS/Termin4/SensorConfiguration.cpp
+	"SensorConfiguration.h"
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+
+1496324642 source:/home/pi/development/SeS/Termin4/SensorTag.cpp
+	"SensorTag.h"
+
